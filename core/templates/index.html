@@ -17,6 +17,9 @@
     <h1></h1>
 </head>
 <body>
+    <!-- <nav class="navbar navbar-dark bg-primary" style="font-size: 40px; color: aquamarine; font-family: 'Mukta', sans-serif;">
+        <a href="#" class="navbar-brand">Simple App</a>
+    </nav> -->
     <h3 id="msg" style="text-align: center;">
         {{message}}
     </h3>
@@ -37,7 +40,7 @@
                                     <button class="btn upload" name="upload_button" value="upload_button">upload</button>
                                 </div>
                                 <div class="form-group">
-                                    <button class="generate" >Generate</button>
+                                    <button class="generate" name="generate_button" value="generate_button">Generate</button>
                                 </div>
                                 
                                 <table class="styled-table">
@@ -57,7 +60,9 @@
                                 </table>
                                 
                             </form>
-                            
+                            {% if uploaded_file_url %}
+                                <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+                            {% endif %}
                         </div>
                         
                     </div>

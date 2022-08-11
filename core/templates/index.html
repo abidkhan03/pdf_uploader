@@ -60,7 +60,7 @@
                                     <button class="generate" name="generate_button" value="generate_button">Generate</button>
                                 </div>
                                 
-                                <table class="styled-table">
+                                <!-- <table class="styled-table">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -74,12 +74,44 @@
                                         </tr>
                                         
                                     </tbody>
-                                </table>
-                                
+                                </table> -->
+                                <!-- left div table with data  -->
+                                <div id="leftDiv">
+                                    
+                                    <div class="div2">
+                                        <div class="div3">image</div>
+                                        <div style="text-align: center">
+                                        <p style="text-align: center;">গণ􀄴জাত􀄮ী বাংলােদশ সরকার</p>
+                                        <p style="color: rgb(0, 98, 0); text-align: center;">Government of the People's Republic of Bangladesh</p>
+                                        <p style="color: red; text-align: left; margin:0;display:inline;">National ID Card</p><p style="margin:0;display:inline; text-align:right;"> / জাতীয় পিরচয় প􀄔</p>
+                                        </div>
+                                    </div>
+                                    <div class="detail">
+                                        <p>নাম: </p>
+                                        <p>Name: </p>
+                                        <p>িপতা: </p>
+                                        <p>মাতা: </p>
+                                        <p>Date of Birth: </p>
+                                        <p>ID NO: </p>
+                                    </div>
+                                </div>
+                                <!-- right div table with data  -->
+                                <div id="rightDiv">
+                                    <p>এই কাড􀃎িট গণ􀄴জাত􀄮ী বাংলােদশ সরকােরর স􀅂ি􀄓। কাড􀃎িট ব􀃋বহারকারী ব􀃋তীত অ􀄯
+                                        􀃏কাথাও পাওয়া 􀃏গেল িনকট􀅪 􀃏পা􀅨 অিফেস জমা 􀃏দবার জ􀄯 অ􀅿েরাধ করা হেলা।</p>
+                                    <div class="subDiv1">
+                                        <p style="position:relative; left:20px;">িঠকানা: বাসা/􀃏হাি􀅏ং: 􀃥াম/রা􀅩া: ডাকঘর:</p>
+                                        <p style="position:relative; top: 40%; left:10px; text-align: left; margin:0;display:inline;">রেক্তর 􀆇প / Blood Group: জ􀄥􀅪ান:</p>
+                                        <p style="position:relative; top: 40%; left:40%; margin:0;display:inline; text-align:right; background: black; color: white;">মূ􀄙ণ: ০১</p>
+                                    </div>
+                                    <div class="subDiv2">
+                                        <div class="imageDiv">image</div>
+                                        <p style="position:relative; top: 30%; left: 2%; text-align: left; margin:0;display:inline;">􀄴দানকারী কতৃ􀃎পে􀃙র 􀅮া􀃙র</p>
+                                        <p style="position:relative; top: 30%; left:18%; margin:0;display:inline; text-align:right;">􀄴দােনর তািরখ: ২২/০৭/২০২২</p>
+                                    </div>
+                                </div>
                             </form>
-                            {% if uploaded_file_url %}
-                                <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-                            {% endif %}
+                            
                         </div>
                         
                     </div>
@@ -89,16 +121,10 @@
     </for>
 </body>
 <script>
-    $(document).ready(function() {
-    // messages timeout for 10 sec 
-    setTimeout(function() {
-        $('.message').fadeOut('slow');
-    }, 1000); // <-- time in milliseconds, 1000 =  1 sec
-
-    // delete message
-    $('.del-msg').live('click',function(){
-        $('.del-msg').parent().attr('style', 'display:none;');
-    })
-});
+    setTimeout(function(){
+        if ($('#msg').length > 0) {
+            $('#msg').remove();
+        }
+    }, 3000)    // 3000 millisecond
 </script>
 </html>

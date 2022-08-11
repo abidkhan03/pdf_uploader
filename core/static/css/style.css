@@ -10,10 +10,9 @@
     border-radius: 0;
     border: 2px solid rgba(0,0,0,0.1);
     box-shadow: 20px 20px 0 rgba(0,0,0,0.1);
-    position: relative;
     left: 60px;
-    height: 680px;
-    width: 1200px;
+    height: 100%;
+    width: 220%;
 }
 .form-horizontal .title{
     color: #009879;
@@ -68,7 +67,7 @@
     z-index: 1;
     transition: all 0.3s ease 0s;
     text-align: center;
-    left: 540px;
+    left: 50%;
 }
 .form-horizontal .btn:hover,
 .form-horizontal .btn:focus{
@@ -110,8 +109,8 @@
     display: inline-block;
     overflow: hidden;
     position: relative;
-    left: 400px;
-    top: 50px;
+    left: 40%;
+    top: 25%;
     z-index: 1;
     transition: all 0.3s ease 0s;
     text-align: center;
@@ -142,7 +141,68 @@
         margin: 0 auto 20px;
     }
 }
-
+/* div1, div2, and div3 styling for generating data */
+#leftDiv {
+    border:3px solid black; 
+    margin-top: 20px;
+    /* box-shadow: 20px 20px 0 rgba(0,0,0,0.1); */
+    background-color: #fffcfc;
+    position: relative;
+    left: 10px;
+    height: 390px; 
+    width:600px; 
+    border-color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+.div2 {
+    border-bottom:3px solid black;
+    position: relative;
+    height: 130px; 
+    width: 600px; 
+    border-color: black;
+}
+.div3 {
+    float: left;
+    width: 20%;
+    height: 100%; 
+}
+.detail{
+    font-family: 'Mukta', sans-serif;
+    position: inherit;
+    left: 150px;
+    font-weight: bold;
+}
+#rightDiv {
+    border:3px solid black; 
+    margin-top: 20px;
+    /* box-shadow: 20px 20px 0 rgba(0,0,0,0.1); */
+    background-color: #fffcfc;
+    position: relative;
+    left: 650px;
+    top: -410px;
+    height: 390px; 
+    width:600px; 
+    border-color: black;
+    font-weight: bold;
+}
+.subDiv1 {
+    border-top: 3px solid black;
+    width: 100%;
+    height: 30%;
+}
+.subDiv2 {
+    border-top: 3px solid black;
+    width: 100%;
+    height: 45%;
+}
+.imageDiv {
+    position: relative;
+    width: 25%;
+    height: 15%;
+    top: 8%;
+    left: 10%;
+}
 /* table styling after generate button  */
 
 .styled-table {

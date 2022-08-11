@@ -24,6 +24,7 @@
     <!-- <nav class="navbar navbar-dark bg-primary" style="font-size: 40px; color: aquamarine; font-family: 'Mukta', sans-serif;">
         <a href="#" class="navbar-brand">Simple App</a>
     </nav> -->
+    {{data}}
     {% for message in messages %}
     {% if message.tags == "success" %}
     <div class="message bg-green-500 m-3 rounded-lg p-1">
@@ -87,12 +88,12 @@
                                         </div>
                                     </div>
                                     <div class="detail">
-                                        <p>নাম: </p>
-                                        <p>Name: </p>
-                                        <p>িপতা: </p>
-                                        <p>মাতা: </p>
-                                        <p>Date of Birth: </p>
-                                        <p>ID NO: </p>
+                                        <p>নাম:  {{data.NameBangla}}</p>
+                                        <p>Name: {{data.NameEnglish}}</p>
+                                        <p>িপতা: {{data.FatherName}}</p>
+                                        <p>মাতা: {{data.MotherName}}</p>
+                                        <p>Date of Birth: {{data.DOB}}</p>
+                                        <p>ID NO: {{data.NationalID}}</p>
                                     </div>
                                 </div>
                                 <!-- right div table with data  -->

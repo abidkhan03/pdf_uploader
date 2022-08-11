@@ -60,6 +60,6 @@ def GetPdf(file_path:str):
 
 
 if __name__ == '__main__':
-    # getImage('media/0মোঃ রফিকুল ইসলাম (1)_2cMxbyh.pdf')
+    getImage('media/0মোঃ রফিকুল ইসলাম (1)_2cMxbyh.pdf')
     GetPdf('media/0মোঃ রফিকুল ইসলাম (1)_2cMxbyh.pdf')
     

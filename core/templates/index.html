@@ -18,6 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -62,8 +63,7 @@
                                 name="pdf_file">
                         </div>
                         <div>
-                            <button class="btn upload" name="upload_button"
-                                value="upload_button">upload</button>
+                            <button class="btn upload" name="upload_button" value="upload_button">Generate</button>
                         </div>
                         <div class="form-group">
                             <button class="generate" name="generate_button" value="generate_button"
@@ -72,27 +72,40 @@
                     </form>
                 </div>
             </div>
-        
+
         </div>
 
-        <h3 class="text-center text-green">Output</h3>
+        <div class="row mt-4">
+            <div class="col-md-10">
+                <h3 class="text-center" style="color: green;">Output</h3>
+            </div>
+            <div class="col-md-2" id="editor">
+                <button class="btn btn-primary btn-sm text-white" id="cmd">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="34px" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
 
-        <div class="row m-3 gap-0 d-flex justify-content-center">
+        <div class="row m-3 gap-0 d-flex justify-content-center" id="content">
             <!-- Left -->
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="card h-100 border-2 border border-dark rounded-0">
                     <div class="card-header">
                         <div class="image1"></div>
                         <div style="text-align: center">
-                            <p style="text-align: center;">গণ􀄴জাত􀄮ী বাংলােদশ সরকার</p>
-                            <p style="color: rgb(0, 98, 0); text-align: center;">Government of
-                                the
-                                People's Republic of Bangladesh</p>
-                            <p style="color: red; text-align: left; margin:0;display:inline;">
-                                National
-                                ID Card</p>
-                            <p style="margin:0;display:inline; text-align:right;"> / জাতীয় পিরচয়
-                                প􀄔</p>
+                            <p style="text-align: center;"><strong>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</strong></p>
+                            <p style="color: rgb(0, 98, 0); text-align: center;"><strong>Government of
+                                    the
+                                    People's Republic of Bangladesh</strong></p>
+                            <p style="color: red; text-align: left; margin:0;display:inline;"><strong>
+                                    National
+                                    ID Card</strong></p>
+                            <p style="margin:0;display:inline; text-align:right;"><strong> / জাতীয় পরিচয় পত্র</strong>
+                            </p>
                         </div>
                     </div>
                     <div class="card-body border-2 border-top border-dark rounded-0">
@@ -111,12 +124,13 @@
                             {% endif %}
                             <div class="col-md-8">
                                 <div class="">
-                                    <p>নাম: {{data.NameBangla}}</p>
-                                    <p>Name: {{data.NameEnglish}}</p>
-                                    <p>িপতা: {{data.FatherName}}</p>
-                                    <p>মাতা: {{data.MotherName}}</p>
-                                    <p>Date of Birth: <span class="text-danger"> {{data.DOB}}</span> </p>
-                                    <p>ID NO: <span class="text-danger"> {{data.NationalID}}</span></p>
+                                    <p><strong>নাম:</strong> {{data.NameBangla}}</p>
+                                    <p><strong>Name: </strong> {{data.NameEnglish}}</p>
+                                    <p><strong>পিতা: </strong> {{data.FatherName}}</p>
+                                    <p><strong>মাতা: </strong> {{data.MotherName}}</p>
+                                    <p><strong>Date of Birth: </strong> <span class="text-danger"> {{data.DOB}}</span>
+                                    </p>
+                                    <p><strong>ID NO: <span class="text-danger"> {{data.NationalID}}</span></strong></p>
                                 </div>
                             </div>
                         </div>
@@ -124,13 +138,11 @@
                 </div>
             </div>
             <!-- right -->
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="card h-100 border-2 border border-dark rounded-0">
                     <div class="card-header h-25">
-                        <p>এই কাড􀃎িট গণ􀄴জাত􀄮ী বাংলােদশ সরকােরর স􀅂ি􀄓। কাড􀃎িট ব􀃋বহারকারী
-                            ব􀃋তীত অ􀄯
-                            􀃏কাথাও পাওয়া 􀃏গেল িনকট􀅪 􀃏পা􀅨 অিফেস জমা 􀃏দবার জ􀄯 অ􀅿েরাধ করা
-                            হেলা।</p>
+                        <p>এই কার্ডটি গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের সম্পত্তি। কার্ডটি ব্যবহারকারী ব্যতীত অন্য কোথাও
+                            পাওয়া গেলে নিকটস্থ পোস্ট অফিসে জমা দেবার জন্য অনুরোধ করা হলো।</p>
                     </div>
                     <div class="card-body h-25 border-2 border-top border-dark rounded-0">
 
@@ -140,8 +152,8 @@
                                 2 Home
                                 3 Village
                                 4 post -->
-                                <p>িঠকানা: <span>{{data.Village}}</span> বাসা/􀃏হাি􀅏ং: <span>{{data.Home}}</span> 􀃥াম/রা􀅩া: <span>{{data.Village}}</span> ডাকঘর: <span>{{data.PostOffice}}</span></p>
-                                <p class="pb-2"> রেক্তর 􀆇প / Blood Group: জ􀄥􀅪ান: <span>{{data.BirthPlace}}</span></p>
+                                <p>ঠিকানা : <span>{{data.Village}}</span> বাসা/হোল্ডিং: <span>{{data.Home}}</span> গ্রাম/রাস্তা: <span>{{data.Village}}</span> ডাকঘর: <span>{{data.PostOffice}}</span></p>
+                                <p class="pb-2"> রক্তের গ্রুপ / Blood Group: জন্মস্থান: <span>{{data.BirthPlace}}</span></p>
                             </div>
                             <div class="col-md-2 float-right mt-5">
                                 <p class="bg-black text-white text-end"> মূ􀄙ণ: ০১</p>
@@ -152,7 +164,7 @@
                         <div class="">
                             {% if data.userSign %}
                             <div class="pt-3">
-                                <img src="{% static 'images/1.png' %}" height="52px">
+                                <img src="{% static 'images/1.png' %}" height="52px" width="150px">
                             </div>
                             {% else %}
                             <div class="pt-3">
@@ -161,10 +173,10 @@
                             {% endif %}
                             <div class="row mt-2">
                                 <div class="col-md-6">
-                                    <p>􀄴দানকারী কতৃ􀃎পে􀃙র 􀅮া􀃙র</p>
+                                    <p>প্রদানকারী কর্তৃপক্ষের স্বাক্ষর</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>􀄴দােনর তািরখ: ২২/০৭/২০২২</p>
+                                    <p>প্রদানের তারিখ: ২২/০৭/২০২২</p>
                                 </div>
                             </div>
                         </div>
@@ -177,8 +189,8 @@
     <form>
         <div class="form-bg">
             <div class="container">
-                
-                
+
+
             </div>
         </div>
     </form>
@@ -197,4 +209,20 @@
     });
 </script>
 
+<script>
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };
+    
+    $('#cmd').click(function () {
+        doc.fromHTML($('#content').html(), 15, 15, {
+            'width': 170,
+                'elementHandlers': specialElementHandlers
+        });
+        doc.save('sample-file.pdf');
+    });
+    </script>
 </html>

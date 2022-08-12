@@ -27,12 +27,12 @@
     {{data}}
     {% for message in messages %}
     {% if message.tags == "success" %}
-    <div class="message bg-green-500 m-3 rounded-lg p-1">
+    <div class="alert alert-success">
         {{ message }}
         <a href="#" class="del-msg">&times;</a>
     </div>
     {% elif message.tags == "error" %}
-    <div class="message bg-red-500 m-3 rounded-lg p-1">
+    <div class="alert alert-danger">
         {{ message }}
         <a href="#" class="del-msg">&times;</a>
     </div>
@@ -56,9 +56,6 @@
                                 <div class="form-group">
                                     <input type="file" class="form-control-file" aria-describedby="basic-addon1" name="pdf_file">
                                     <button class="btn upload" name="upload_button" value="upload_button">upload</button>
-                                </div>
-                                <div class="form-group">
-                                    <button class="generate" name="generate_button" value="generate_button">Generate</button>
                                 </div>
                                 
                                 <!-- <table class="styled-table">
@@ -92,7 +89,7 @@
                                         <p>Name: {{data.NameEnglish}}</p>
                                         <p>িপতা: {{data.FatherName}}</p>
                                         <p>মাতা: {{data.MotherName}}</p>
-                                        <p>Date of Birth: {{data.DOB}}</p>
+                                        <p >Date of Birth: <span class="text-danger"> {{data.DOB}} </span> </p>
                                         <p>ID NO: {{data.NationalID}}</p>
                                     </div>
                                 </div>
@@ -122,10 +119,16 @@
     </for>
 </body>
 <script>
-    setTimeout(function(){
-        if ($('#msg').length > 0) {
-            $('#msg').remove();
-        }
-    }, 3000)    // 3000 millisecond
+        $(document).ready(function() {
+    // messages timeout for 10 sec 
+    setTimeout(function() {
+        $('.message').fadeOut('slow');
+    }, 1000); // <-- time in milliseconds, 1000 =  1 sec
+
+    // delete message
+    $('.del-msg').live('click',function(){
+        $('.del-msg').parent().attr('style', 'display:none;');
+    })
+});
 </script>
 </html>

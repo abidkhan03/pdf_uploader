@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,17 +10,20 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css">
     <!-- JavaScript Bundle with Popper -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" ></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <h1></h1>
 </head>
+
 <body>
     <!-- <nav class="navbar navbar-dark bg-primary" style="font-size: 40px; color: aquamarine; font-family: 'Mukta', sans-serif;">
         <a href="#" class="navbar-brand">Simple App</a>
@@ -37,112 +41,156 @@
         <a href="#" class="del-msg">&times;</a>
     </div>
     {% endif %}
-{% endfor %}
+    {% endfor %}
     <h3 id="msg" style="text-align: center;">
-        
+
     </h3>
-    <for>
-        <div class="form-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
-                        <div class="form-container">
-                            <form class="form-horizontal" method="post" action="{% url 'index' %}" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <h3 class="title">Uploading PDF</h3>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Choose a file">
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" class="form-control-file" aria-describedby="basic-addon1" name="pdf_file">
-                                    <button class="btn upload" name="upload_button" value="upload_button">upload</button>
-                                </div>
-                                <div class="form-group">
-                                    <button class="generate" name="generate_button" value="generate_button">Generate</button>
-                                </div>
-                                
-                                <!-- <table class="styled-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Points</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Shami</td>
-                                            <td>6000</td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table> -->
-                                <!-- left div table with data  -->
-                                <div id="leftDiv">
-                                    
-                                    <div class="div2">
-                                        <div class="image1"></div>
-                                        <div style="text-align: center">
-                                        <p style="text-align: center;">গণ􀄴জাত􀄮ী বাংলােদশ সরকার</p>
-                                        <p style="color: rgb(0, 98, 0); text-align: center;">Government of the People's Republic of Bangladesh</p>
-                                        <p style="color: red; text-align: left; margin:0;display:inline;">National ID Card</p><p style="margin:0;display:inline; text-align:right;"> / জাতীয় পিরচয় প􀄔</p>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="image2">
-                                            <img src="static/images/0.png">
-                                        </div>
-                                        
-                                        <div class="data">
-                                            <p>নাম:  {{data.NameBangla}}</p>
-                                            <p>Name: {{data.NameEnglish}}</p>
-                                            <p>িপতা: {{data.FatherName}}</p>
-                                            <p>মাতা: {{data.MotherName}}</p>
-                                            <p >Date of Birth: <span class="text-danger"> {{data.DOB}} </span> </p>
-                                            <p>ID NO: {{data.NationalID}}</p>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <!-- right div table with data  -->
-                                <div id="rightDiv">
-                                    <p>এই কাড􀃎িট গণ􀄴জাত􀄮ী বাংলােদশ সরকােরর স􀅂ি􀄓। কাড􀃎িট ব􀃋বহারকারী ব􀃋তীত অ􀄯
-                                        􀃏কাথাও পাওয়া 􀃏গেল িনকট􀅪 􀃏পা􀅨 অিফেস জমা 􀃏দবার জ􀄯 অ􀅿েরাধ করা হেলা।</p>
-                                    <div class="subDiv1">
-                                        <p style="position:absolute; left:20px;">িঠকানা: বাসা/􀃏হাি􀅏ং: 􀃥াম/রা􀅩া: ডাকঘর:</p>
-                                        <p style="position:absolute; top: 45%; left:10px; text-align: left; margin:0;display:inline;">রেক্তর 􀆇প / Blood Group: জ􀄥􀅪ান:</p>
-                                        <p style="position:absolute; top: 45%; left:85%; margin:0;display:inline; text-align:right; background: black; color: white;">মূ􀄙ণ: ০১</p>
-                                    </div>
-                                    <div class="subDiv2">
-                                        <div class="imageDiv">
-                                            <img src="static/images/1.png">
-                                        </div>
-                                        <div class="parag">
-                                        <p style="position:absolute; top: 75%; left: 10px; text-align: left; margin:0;display:inline;">􀄴দানকারী কতৃ􀃎পে􀃙র 􀅮া􀃙র</p>
-                                        <p style="position:absolute; top: 75%; left:53%; margin:0;display:inline; text-align:right;">􀄴দােনর তািরখ: ২২/০৭/২০২২</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            
+
+    <div class="container-2xl flex-col">
+        <div class="row">
+            <div class="p-2">
+                <div class="form-container">
+                    <form class="form-horizontal" method="post" action="{% url 'index' %}"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h3 class="title">Uploading PDF</h3>
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="Choose a file">
                         </div>
-                        
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" aria-describedby="basic-addon1"
+                                name="pdf_file">
+                        </div>
+                        <div>
+                            <button class="btn upload" name="upload_button"
+                                value="upload_button">upload</button>
+                        </div>
+                        <div class="form-group">
+                            <button class="generate" name="generate_button" value="generate_button"
+                                style="border:0;"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+        </div>
+
+        <h3 class="text-center text-green">Output</h3>
+
+        <div class="row m-3 gap-0 d-flex justify-content-center">
+            <!-- Left -->
+            <div class="col-sm-4">
+                <div class="card h-100 border-2 border border-dark rounded-0">
+                    <div class="card-header">
+                        <div class="image1"></div>
+                        <div style="text-align: center">
+                            <p style="text-align: center;">গণ􀄴জাত􀄮ী বাংলােদশ সরকার</p>
+                            <p style="color: rgb(0, 98, 0); text-align: center;">Government of
+                                the
+                                People's Republic of Bangladesh</p>
+                            <p style="color: red; text-align: left; margin:0;display:inline;">
+                                National
+                                ID Card</p>
+                            <p style="margin:0;display:inline; text-align:right;"> / জাতীয় পিরচয়
+                                প􀄔</p>
+                        </div>
+                    </div>
+                    <div class="card-body border-2 border-top border-dark rounded-0">
+                        <div class="row g-1">
+                            <!-- <div class="col-md-4 p-4">
+                                <img src="{% static 'images/0.png' %}" class="img-fluid rounded-start">
+                            </div> -->
+                            {% if data.userImg %}
+                            <div class="col-md-4 p-4">
+                                <img src="{% static 'images/0.png' %}" class="img-fluid rounded-start">
+                            </div>
+                            {% else %}
+                            <div class="col-md-4 p-4">
+                                <img src="{% static 'images/log.png' %}" class="img-fluid rounded-start">
+                            </div>
+                            {% endif %}
+                            <div class="col-md-8">
+                                <div class="">
+                                    <p>নাম: {{data.NameBangla}}</p>
+                                    <p>Name: {{data.NameEnglish}}</p>
+                                    <p>িপতা: {{data.FatherName}}</p>
+                                    <p>মাতা: {{data.MotherName}}</p>
+                                    <p>Date of Birth: <span class="text-danger"> {{data.DOB}}</span> </p>
+                                    <p>ID NO: <span class="text-danger"> {{data.NationalID}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- right -->
+            <div class="col-sm-4">
+                <div class="card h-100 border-2 border border-dark rounded-0">
+                    <div class="card-header h-25">
+                        <p>এই কাড􀃎িট গণ􀄴জাত􀄮ী বাংলােদশ সরকােরর স􀅂ি􀄓। কাড􀃎িট ব􀃋বহারকারী
+                            ব􀃋তীত অ􀄯
+                            􀃏কাথাও পাওয়া 􀃏গেল িনকট􀅪 􀃏পা􀅨 অিফেস জমা 􀃏দবার জ􀄯 অ􀅿েরাধ করা
+                            হেলা।</p>
+                    </div>
+                    <div class="card-body h-25 border-2 border-top border-dark rounded-0">
+
+                        <div class="row">
+                            <div class="col-md-10">
+                                <p>িঠকানা: বাসা/􀃏হাি􀅏ং: 􀃥াম/রা􀅩া: ডাকঘর:</p>
+                                <p> রেক্তর 􀆇প / Blood Group: জ􀄥􀅪ান:</p>
+                            </div>
+                            <div class="col-md-2 float-right mt-5">
+                                <p class="bg-black text-white text-end"> মূ􀄙ণ: ০১</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer h-50 border-2 border-top border-dark rounded-0">
+                        <div class="">
+                            {% if data.userSign %}
+                            <div class="pt-3">
+                                <img src="{% static 'images/1.png' %}" height="52px">
+                            </div>
+                            {% else %}
+                            <div class="pt-3">
+                                <img src="{% static 'images/log.png' %}" height="52px">
+                            </div>
+                            {% endif %}
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <p>􀄴দানকারী কতৃ􀃎পে􀃙র 􀅮া􀃙র</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>􀄴দােনর তািরখ: ২২/০৭/২০২২</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </for>
+    </div>
+
+    <form>
+        <div class="form-bg">
+            <div class="container">
+                
+                
+            </div>
+        </div>
+    </form>
 </body>
 <script>
-        $(document).ready(function() {
-    // messages timeout for 10 sec 
-    setTimeout(function() {
-        $('.message').fadeOut('slow');
-    }, 1000); // <-- time in milliseconds, 1000 =  1 sec
+    $(document).ready(function () {
+        // messages timeout for 10 sec 
+        setTimeout(function () {
+            $('.message').fadeOut('slow');
+        }, 1000); // <-- time in milliseconds, 1000 =  1 sec
 
-    // delete message
-    $('.del-msg').live('click',function(){
-        $('.del-msg').parent().attr('style', 'display:none;');
-    })
-});
+        // delete message
+        $('.del-msg').live('click', function () {
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
 </script>
+
 </html>

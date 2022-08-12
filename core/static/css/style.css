@@ -11,10 +11,13 @@
     border: 2px solid rgba(0,0,0,0.1);
     box-shadow: 20px 20px 0 rgba(0,0,0,0.1);
     position: relative;
-    left: -10px;
-    height: 60%;
-    width: 1100px;
+    left: 2%;
+    height: auto;
+    width: 100%;
 }
+
+
+
 .form-horizontal .title{
     color: #009879;
     font-size: 60px;
@@ -57,18 +60,18 @@
     font-size: 18px;
     font-weight: 600;
     text-align: left;
-    width: 180px;
+    width: 200px;
     padding: 10px 30px;
     margin: 0 25px 0 0;
     border-radius: 15px;
     border: none;
     display: inline-block;
     overflow: hidden;
-    position: relative;
     z-index: 1;
     transition: all 0.3s ease 0s;
     text-align: center;
-    left: 50%;
+    left: 43%;
+    top: 30%;
 }
 .form-horizontal .btn:hover,
 .form-horizontal .btn:focus{
@@ -96,7 +99,7 @@
     top: -30px;
 }
 /* generate button styling */
-.form-horizontal .generate{
+/* .form-horizontal .generate{
     color: #fff;
     background-color: #009879;
     font-size: 18px;
@@ -115,9 +118,9 @@
     z-index: 1;
     transition: all 0.3s ease 0s;
     text-align: center;
-}
+} */
 /* hover focus on button while mouse hovering */
-.form-horizontal .generate:hover,
+/* .form-horizontal .generate:hover,
 .form-horizontal .generate:focus{
     color: #fff;
     background-color: #222;
@@ -127,7 +130,7 @@
 .form-horizontal .generate:hover:after{
     right: -70px;
     top: -30px;
-}
+} */
 
 @media only screen and (max-width:479px){
     .form-container .form-horizontal{
@@ -149,18 +152,18 @@
     /* box-shadow: 20px 20px 0 rgba(0,0,0,0.1); */
     background-color: #fffcfc;
     position: relative;
-    left: -20px;
-    height: 390px; 
-    width:520px; 
+    left: 2%;
+    height: 55%; 
+    width:45%; 
     border-color: black;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
 }
 .div2 {
     border-bottom:3px solid black;
-    position: relative;
-    height: 120px; 
-    width: 515px; 
+    position: absolute;
+    height: 30%; 
+    width: 100%; 
     border-color: black;
 }
 .image1 {
@@ -173,9 +176,10 @@
 }
 .detail{
     font-family: 'Mukta', sans-serif;
-    position: relative;
-    left: 150px;
+    position: absolute;
+    left: 28%;
     font-weight: bold;
+    top: 30%;
 }
 /* .image2 {
     float: left;
@@ -186,7 +190,7 @@
     left: -120px;
 } */
 .image2 img{
-    width: 20%;
+    width: 90%;
     height: 60%;
     margin-top: 10px;
     position: absolute;
@@ -205,10 +209,10 @@
     /* box-shadow: 20px 20px 0 rgba(0,0,0,0.1); */
     background-color: #fffcfc;
     position: relative;
-    left: 520px;
-    top: -410px;
-    height: 390px; 
-    width:520px; 
+    left: 50%;
+    top: -58%;
+    height: 55%; 
+    width:45%; 
     border-color: black;
     font-weight: bold;
 }

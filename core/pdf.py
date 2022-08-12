@@ -27,7 +27,9 @@ def getImage(pdf_path:str):
 
 def JsonParser(pdf: PdfReader):
     obj={
-        
+        'userImg':"images/0.png",     #user image
+        'userSign':"images/1.png",    #user signature
+
     }
     for page in pdf.pages:
         text=page.extractText()

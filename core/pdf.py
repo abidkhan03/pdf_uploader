@@ -2,7 +2,7 @@ from PyPDF2 import PdfReader
 import fitz
 import io
 from PIL import Image
-import tqdm
+
 FILE_TYPE = ['pdf']
 def getImage(pdf_path:str):
     # pdf_file = fitz.open(pdf_path)

@@ -34,6 +34,7 @@ def JsonParser(pdf: PdfReader):
     for page in pdf.pages:
         text=page.extractText()
         for index,line in enumerate(text.split('\n')):
+            print(line)
             if "National" in line.split(' '):obj["NationalID"]=line.split(' ')[-1]
             elif "Pin" in line.split(' '):obj["Pin"]=line.split(' ')[-1]
             elif "Name(Bangla)" in line.split(' '):obj["NameBangla"]=" ".join(line.split(' ')[2:])
@@ -41,7 +42,7 @@ def JsonParser(pdf: PdfReader):
             elif ['Date', 'of', 'Birth'] == line.split()[:3]: obj["DOB"]=line.split(' ')[-1]
             elif ['Father','Name'] == line.split()[:2]: obj["FatherName"]=" ".join(line.split(' ')[2:])
             elif ['Mother','Name'] == line.split()[:2]: obj["MotherName"]=" ".join(line.split(' ')[2:])
-            elif ['Brith','Place'] == line.split()[:2]: obj["BirthPlace"]=" ".join(line.split(' ')[2:])
+            elif ['Birth','Place'] == line.split()[:2]: obj["BirthPlace"]=" ".join(line.split(' ')[2:])
             elif "Village/R" in line.split():
                 village=line.split("oad")[-1].split("Home")[0]
                 home=text.split('\n')[index+1][2:].split(' ')
@@ -51,6 +52,8 @@ def JsonParser(pdf: PdfReader):
             elif ['Post','Office'] == line.split()[:2]:
                 post=line.split('Office')[-1].split('Postal')[0]
                 obj["PostOffice"]=post
+            elif ['Blood','Group'] == line.split()[:2]:
+                obj["BloodGroup"]=line.split(' ')[-1]
                 
             
     return obj
@@ -62,6 +65,6 @@ def GetPdf(file_path:str):
 
 
 if __name__ == '__main__':
-    getImage('media/0মোঃ রফিকুল ইসলাম (1)_2cMxbyh.pdf')
-    GetPdf('media/0মোঃ রফিকুল ইসলাম (1)_2cMxbyh.pdf')
+    getImage('media/test.pdf')
+    GetPdf('media/test.pdf')
     

@@ -135,9 +135,13 @@
                     <div class="card-body h-25 border-2 border-top border-dark rounded-0">
 
                         <div class="row">
-                            <div class="col-md-10">
-                                <p>িঠকানা: বাসা/􀃏হাি􀅏ং: 􀃥াম/রা􀅩া: ডাকঘর:</p>
-                                <p> রেক্তর 􀆇প / Blood Group: জ􀄥􀅪ান:</p>
+                            <div class="col-md-10 ">
+                                <!-- 1 address
+                                2 Home
+                                3 Village
+                                4 post -->
+                                <p>িঠকানা: <span>{{data.Village}}</span> বাসা/􀃏হাি􀅏ং: <span>{{data.Home}}</span> 􀃥াম/রা􀅩া: <span>{{data.Village}}</span> ডাকঘর: <span>{{data.PostOffice}}</span></p>
+                                <p class="pb-2"> রেক্তর 􀆇প / Blood Group: জ􀄥􀅪ান: <span>{{data.BirthPlace}}</span></p>
                             </div>
                             <div class="col-md-2 float-right mt-5">
                                 <p class="bg-black text-white text-end"> মূ􀄙ণ: ০১</p>

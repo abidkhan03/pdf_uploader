@@ -37,7 +37,7 @@ def JsonParser(pdf: PdfReader):
             print(line)
             if "National" in line.split(' '):obj["NationalID"]=line.split(' ')[-1]
             elif "Pin" in line.split(' '):obj["Pin"]=line.split(' ')[-1]
-            elif "Name(Bangla)" in line.split(' '):obj["NameBangla"]=" ".join(line.split(' ')[2:])
+            elif "Name(Bangla)" in line.split(' '): obj["NameBangla"]=" ".join(line.split(' ')[2:])
             elif "Name(English)" in line.split(' '): obj["NameEnglish"]=" ".join(line.split(' ')[1:])
             elif ['Date', 'of', 'Birth'] == line.split()[:3]: obj["DOB"]=line.split(' ')[-1]
             elif ['Father','Name'] == line.split()[:2]: obj["FatherName"]=" ".join(line.split(' ')[2:])

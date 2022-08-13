@@ -1,4 +1,5 @@
 {% load static %}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,182 +20,184 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+    {% tailwind_css %}
     <h1></h1>
 </head>
 
-<body>
-    <!-- <nav class="navbar navbar-dark bg-primary" style="font-size: 40px; color: aquamarine; font-family: 'Mukta', sans-serif;">
-        <a href="#" class="navbar-brand">Simple App</a>
-    </nav> -->
-    {{data}}
+
+<body class="bg-gray-50">
+    <!-- {{data}} -->
     {% for message in messages %}
-    {% if message.tags == "success" %}
-    <div class="alert alert-success">
-        {{ message }}
-        <a href="#" class="del-msg">&times;</a>
+            {% if message.tags == "success" %}
+            <div class="message bg-green-500 m-3 rounded-lg p-1">
+                {{ message }}
+                <a href="#" class="del-msg">&times;</a>
+            </div>
+            {% elif message.tags == "error" %}
+            <div class="message bg-red-500 m-3 rounded-lg p-1">
+                {{ message }}
+                <a href="#" class="del-msg">&times;</a>
+            </div>
+            {% endif %}
+            {% endfor %}
+    <h1 class="text-xl sm:text-4xl text-green-800 bg-white p-5 sticky top-0 z-10 text-center font-bold">
+        Upload Your PDF file here
+    </h1>
+    <!-- error msg yahan ayga -->
+    <div>
+
     </div>
-    {% elif message.tags == "error" %}
-    <div class="alert alert-danger">
-        {{ message }}
-        <a href="#" class="del-msg">&times;</a>
-    </div>
-    {% endif %}
-    {% endfor %}
-    <h3 id="msg" style="text-align: center;">
-
-    </h3>
-
-    <div class="container-2xl flex-col">
-        <div class="row">
-            <div class="p-2">
-                <div class="form-container">
-                    <form class="form-horizontal" method="post" action="{% url 'index' %}"
-                        enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <h3 class="title">Uploading PDF</h3>
-                        <div class="form-group">
-                            <input class="form-control" type="text" placeholder="Choose a file">
-                        </div>
-                        <div class="form-group">
-                            <input type="file" class="form-control-file" aria-describedby="basic-addon1"
-                                name="pdf_file">
-                        </div>
-                        <div>
-                            <button class="btn upload" name="upload_button"
-                                value="upload_button">upload</button>
-                        </div>
-                        <div class="form-group">
-                            <button class="generate" name="generate_button" value="generate_button"
-                                style="border:0;"></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        
-        </div>
-
-        <h3 class="text-center text-green">Output</h3>
-
-        <div class="row m-3 gap-0 d-flex justify-content-center">
-            <!-- Left -->
-            <div class="col-sm-4">
-                <div class="card h-100 border-2 border border-dark rounded-0">
-                    <div class="card-header">
-                        <div class="image1"></div>
-                        <div style="text-align: center">
-                            <p style="text-align: center;">গণ􀄴জাত􀄮ী বাংলােদশ সরকার</p>
-                            <p style="color: rgb(0, 98, 0); text-align: center;">Government of
-                                the
-                                People's Republic of Bangladesh</p>
-                            <p style="color: red; text-align: left; margin:0;display:inline;">
-                                National
-                                ID Card</p>
-                            <p style="margin:0;display:inline; text-align:right;"> / জাতীয় পিরচয়
-                                প􀄔</p>
-                        </div>
-                    </div>
-                    <div class="card-body border-2 border-top border-dark rounded-0">
-                        <div class="row g-1">
-                            <!-- <div class="col-md-4 p-4">
-                                <img src="{% static 'images/0.png' %}" class="img-fluid rounded-start">
-                            </div> -->
-                            {% if data.userImg %}
-                            <div class="col-md-4 p-4">
-                                <img src="{% static 'images/0.png' %}" class="img-fluid rounded-start">
-                            </div>
-                            {% else %}
-                            <div class="col-md-4 p-4">
-                                <img src="{% static 'images/log.png' %}" class="img-fluid rounded-start">
-                            </div>
-                            {% endif %}
-                            <div class="col-md-8">
-                                <div class="">
-                                    <p>নাম: {{data.NameBangla}}</p>
-                                    <p>Name: {{data.NameEnglish}}</p>
-                                    <p>িপতা: {{data.FatherName}}</p>
-                                    <p>মাতা: {{data.MotherName}}</p>
-                                    <p>Date of Birth: <span class="text-danger"> {{data.DOB}}</span> </p>
-                                    <p>ID NO: <span class="text-danger"> {{data.NationalID}}</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- right -->
-            <div class="col-sm-4">
-                <div class="card h-100 border-2 border border-dark rounded-0">
-                    <div class="card-header h-25">
-                        <p>এই কাড􀃎িট গণ􀄴জাত􀄮ী বাংলােদশ সরকােরর স􀅂ি􀄓। কাড􀃎িট ব􀃋বহারকারী
-                            ব􀃋তীত অ􀄯
-                            􀃏কাথাও পাওয়া 􀃏গেল িনকট􀅪 􀃏পা􀅨 অিফেস জমা 􀃏দবার জ􀄯 অ􀅿েরাধ করা
-                            হেলা।</p>
-                    </div>
-                    <div class="card-body h-25 border-2 border-top border-dark rounded-0">
-
-                        <div class="row">
-                            <div class="col-md-10 ">
-                                <!-- 1 address
-                                2 Home
-                                3 Village
-                                4 post -->
-                                <p>িঠকানা: <span>{{data.Village}}</span> বাসা/􀃏হাি􀅏ং: <span>{{data.Home}}</span> 􀃥াম/রা􀅩া: <span>{{data.Village}}</span> ডাকঘর: <span>{{data.PostOffice}}</span></p>
-                                <p class="pb-2"> রেক্তর 􀆇প / Blood Group: জ􀄥􀅪ান: <span>{{data.BirthPlace}}</span></p>
-                            </div>
-                            <div class="col-md-2 float-right mt-5">
-                                <p class="bg-black text-white text-end"> মূ􀄙ণ: ০১</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer h-50 border-2 border-top border-dark rounded-0">
-                        <div class="">
-                            {% if data.userSign %}
-                            <div class="pt-3">
-                                <img src="{% static 'images/1.png' %}" height="52px">
-                            </div>
-                            {% else %}
-                            <div class="pt-3">
-                                <img src="{% static 'images/log.png' %}" height="52px">
-                            </div>
-                            {% endif %}
-                            <div class="row mt-2">
-                                <div class="col-md-6">
-                                    <p>􀄴দানকারী কতৃ􀃎পে􀃙র 􀅮া􀃙র</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>􀄴দােনর তািরখ: ২২/০৭/২০২২</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <form>
-        <div class="form-bg">
-            <div class="container">
-                
-                
-            </div>
+    <form action="{% url 'index' %}" class="mt-5" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="bg-white m-2 rounded-md flex p-3 gap-x-5">
+            <input type="file" name="pdf_file" value="pdf_value"  class="bg-gray-200 py-2 px-5 w-3/4 cursor-pointer rounded-md">
+            <button 
+                class="bg-green-700 px-10 py-2 rounded-md text-xl w-3/12 items-center gap-x-5 flex text-center text-gray-200 hover:bg-green-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 text-center w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                </svg>
+                <span class="text-center">Generate</span>
+            </button>
         </div>
     </form>
-</body>
-<script>
-    $(document).ready(function () {
-        // messages timeout for 10 sec 
-        setTimeout(function () {
-            $('.message').fadeOut('slow');
-        }, 1000); // <-- time in milliseconds, 1000 =  1 sec
 
-        // delete message
-        $('.del-msg').live('click', function () {
-            $('.del-msg').parent().attr('style', 'display:none;');
-        })
-    });
-</script>
+    <div class="flex flex-col">
+        <!-- output -->
+        <!-- Print button -->
+        <div class="mr-10 mb-1">
+            <button class="float-right border-2 border-blue-800 rounded-md p-1" onclick="printCertificate()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 text-blue-800 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+            </button>
+        </div>
+        <div class="mx-16 my-2 grid md:grid-cols-2 grid-cols-1 border border-dashed border-slate-600" id="certificate">
+            <!-- left -->
+            <div class="bg-white border-2 m-3 border-dotted border-slate-900 rounded-md p-1">
+                <div class="flex border-b-2 border-gray-900 pb-3">
+                    <div class="m-2">
+                        <img src="{% static 'images/download.png' %}" class="h-16 w-16" alt="">
+                    </div>
+                    <div class="flex flex-col text-center ml-3">
+                        <span class="text-2xl font-semibold p-1">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</span>
+                        <span class="text-green-600 text-xl font-semibold">Government of the People's Republic of
+                            Bangladesh</span>
+                        <span class="flex">
+                            <p class="text-red-600 text-2xl font-semibold ml-5 uppercase">National ID Card </p>
+                            <p class="text-xl font-semibold ml-3">/ জাতীয় পরিচয় পত্র</p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex p-2">
+                    <div class="">
+                        <img src="{% static 'images/0.png' %}" class="w-20 h-36 mx-5 my-1" alt="">
+                        <img src="{% static 'images/1.png' %}" class="w-28 h-16 m-2" alt="">
+                    </div>
+                    <div class="p-4 space-y-2">
+                        <p class="">
+                            <span class="ml-6 text-xl font-[500]">নাম:</span>
+                            <span class="ml-5 text-xl font-[500]">{{data.NameBangla}}</span>
+                        </p>
+                        <p>
+                            <span class="pl-1 text-xl font-[500]">Name:</span>
+                            <span class="ml-5 text-xl font-[500]">{{data.NameEnglish}}</span>
+                        </p>
+                        <p>
+                            <span class="ml-4 text-xl font-[500]">পিতা:</span>
+                            <span class="ml-5 text-xl font-[500]">{{data.FatherName}}</span>
+                        </p>
+                        <p class="">
+                            <span class="ml-4 text-xl font-[500]">মাতা:</span>
+                            <span class="ml-5 text-xl font-[500]">{{data.MotherName}}</span>
+                        </p>
+                        <!-- Date of birth -->
+                        <p>
+                            <span class="ml-4 text-xl font-[500]">Date of Birth:</span>
+                            <span class="ml-5 text-xl text-red-600 font-[500]">{{data.DOB}}</span>
+                        </p>
+                        <p>
+                            <span class="ml-4 text-2xl font-semibold">ID NO:</span>
+                            <span class="ml-5 text-3xl text-red-600 font-semibold mt-2">{{data.NationalID}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- right -->
+            <div class="bg-white border-2 m-3 border-dotted border-slate-900 rounded-md p-1">
+                <div class="border-b-2 border-slate-900 p-1">
+                    <p class="font-[600] text-md text-center leading-loose text-[15px]">এই কার্ডটি গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের
+                        সম্পত্তি।
+                        কার্ডটি ব্যবহারকারী ব্যতীত অন্য কোথাও পাওয়া গেলে নিকটস্থ পোস্ট অফিসে জমা দেবার জন্য অনুরোধ করা
+                        হলো।
+                    </p>
+                </div>
+                <div class="border-b-2 border-slate-900 p-1">
+                    <p class="text-center">
+                        <span class="font-[500] text-md text-lg">ঠিকানা:</span>
+                        <span class="font-[500] text-md text-lg">বাসা/হোল্ডিং:</span>
+                        <span class="font-[500] text-md text-lg">{{data.home}}</span>
+                        <span class="font-[500] text-md text-lg">গ্রাম/রাস্তা:</span>
+                        <span class="font-[500] text-md text-lg">{{data.Village}}</span>
+                        <span class="font-[500] text-md text-lg">ডাকঘর:</span>
+                        <span class="font-[500] text-md text-lg">{{data.PostOffice}}</span>
+
+
+                    </p>
+                    <p class="mt-5 p-1">
+                        <span class="text-xl font-[500]">রক্তের গ্রুপ /</span>
+                        <span class="ml-3 text-xl font-[600]">Blood Group</span>
+                        <span class="text-red-600 font-semibold ml-1 text-xl">{{data.BloodGroup}}</span>
+                        <!-- <span class="ml-4 text-xl font-[500]">জন্মস্থান:</span>
+                        <span class="ml-4 text-xl font-[500]">yahan place</span> -->
+                    </p>
+                </div>
+                <div>
+                    <img src="{% static 'images/download.png' %}" class="h-16 w-40 mx-5 my-2" alt="">
+                    <p class="pl-5 text-xl font-medium"><span>প্রদানকারী কর্তৃপক্ষের স্বাক্ষর</span>
+                        <span class="ml-7">প্রদানের তারিখ:</span>
+                        <span class="ml-5">২২/০৭/২০২২</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  -->
+    <script>
+        function printCertificate() {
+            const printContents = document.getElementById('certificate').innerHTML;
+            const originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            setTimeout(function () {
+                window.print();
+                document.body.innerHTML = originalContents;
+            }, 1000);
+            // window.print();
+            // document.body.in?nerHTML = originalContents;
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            // messages timeout for 10 sec 
+            setTimeout(function () {
+                $('.message').fadeOut('slow');
+            }, 1000); // <-- time in milliseconds, 1000 =  1 sec
+    
+            // delete message
+            $('.del-msg').live('click', function () {
+                $('.del-msg').parent().attr('style', 'display:none;');
+            })
+        });
+    </script>
+</body>
+
 
 </html>

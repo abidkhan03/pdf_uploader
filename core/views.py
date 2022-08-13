@@ -7,9 +7,15 @@ from .pdf import getImage,GetPdf,FILE_TYPE
 import os
 def index(request):
     # form = Upload_Form()
+    # print(request.FILES)
+    # print(request.FILES)
+    # print(request.FILES)
+    # print(request.FILES)
     if request.method == 'POST':
+        # print(request.FILES)
         if request.FILES:
             f=request.FILES["pdf_file"]
+            # print(f.name)
             fs = FileSystemStorage()
             fs.url = fs.base_url + f.name
             if fs.url.split('.')[-1] not in FILE_TYPE:
@@ -19,7 +25,7 @@ def index(request):
                 fs.save("test.pdf", f)
                 getImage('media/test.pdf')
                 jsonobj=GetPdf('media/test.pdf')
-                # os.remove('media/test.pdf')
+                os.remove('media/test.pdf')
                 messages.success(request, 'File uploaded successfully')
                 return render(request, 'index.html', {'data': jsonobj})
         else:

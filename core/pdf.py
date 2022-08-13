@@ -60,7 +60,7 @@ def JsonParser(pdf: PdfReader):
 def GetPdf(file_path:str):
     pdf = PdfReader(file_path)
     jsonobj=JsonParser(pdf)
-    print(jsonobj)
+    # print(jsonobj)
     return jsonobj
 
 

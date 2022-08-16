@@ -43,19 +43,18 @@
             </div>
             {% endif %}
             {% endfor %}
-    <h1 class="text-xl sm:text-4xl text-green-800 bg-white p-5 sticky top-0 z-10 text-center font-bold">
+    <h1 class="text-xl sm:text-4xl text-green-800 sm:bg-white sm:p-5 p-2 bg-gray-200 sticky top-0 z-10 text-center font-bold">
         Upload Your PDF file here
     </h1>
     <!-- error msg yahan ayga -->
     <div>
 
     </div>
-    <form action="{% url 'index' %}" class="mt-5" method="post" enctype="multipart/form-data">
+    <form action="{% url 'index' %}" class="sm:mt-5 mt-1" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="bg-white m-2 rounded-md flex p-3 gap-x-5">
-            <input type="file" name="pdf_file" value="pdf_value"  class="bg-gray-200 py-2 px-5 w-3/4 cursor-pointer rounded-md">
-            <button 
-                class="bg-green-700 px-10 py-2 rounded-md text-xl w-3/12 items-center gap-x-5 flex text-center text-gray-200 hover:bg-green-800">
+        <div class="bg-white m-2 rounded-md sm:flex p-3 sm:gap-x-5">
+            <input type="file" name="pdf_file" value="pdf_value"  class="bg-gray-200 py-1 px-5 sm:w-3/4 w-full cursor-pointer rounded-md">
+            <button class="bg-green-700 px-12 mt-1 py-1 rounded-md text-xl sm:w-3/12 w-full items-center gap-x-5 flex text-center text-gray-200 hover:bg-green-800">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 text-center w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -78,91 +77,103 @@
                 </svg>
             </button>
         </div>
-        <div class="mx-16 my-2 grid md:grid-cols-2 grid-cols-1 border border-dashed border-slate-600" id="certificate">
+        <div class="sm:mx-44 md:mx-5 lg:mx-36 xl:mx-64 2xl:mx-96 my-2 grid md:grid-cols-2 grid-cols-1 border border-dashed border-slate-600" id="certificate">
             <!-- left -->
-            <div class="bg-white border-2 m-3 border-dotted border-slate-900 rounded-md p-1">
-                <div class="flex border-b-2 border-gray-900 pb-3">
-                    <div class="m-2">
-                        <img src="{% static 'images/download.png' %}" class="h-16 w-16" alt="">
+            <div class="bg-white border-2 sm:m-3 m-1 border-dotted border-slate-900 rounded-md">
+                <div class="flex border-b-2 border-gray-700 pb-2">
+                    <div class="m-1">
+                        <img src="{% static 'images/download.png' %}" class="h-10 w-10" alt="">
                     </div>
-                    <div class="flex flex-col text-center ml-3">
-                        <span class="text-2xl font-semibold p-1">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</span>
-                        <span class="text-green-600 text-xl font-semibold">Government of the People's Republic of
+                    <div class="flex flex-col ml-1">
+                        <span class="text-[16px] sm:ttext-2xl text-center font-semibold">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</span>
+                        <span class="text-green-600 text-[11px] font-semibold">Government of the People's Republic of
                             Bangladesh</span>
                         <span class="flex">
-                            <p class="text-red-600 text-2xl font-semibold ml-5 uppercase">National ID Card </p>
-                            <p class="text-xl font-semibold ml-3">/ জাতীয় পরিচয় পত্র</p>
+                            <p class="text-red-600 text-[13px] font-semibold ml-2 uppercase">National ID Card </p>
+                            <p class="text-[13px] font-semibold ml-2">/ জাতীয় পরিচয় পত্র</p>
                         </span>
                     </div>
                 </div>
 
-                <div class="flex p-2">
-                    <div class="">
-                        <img src="{% static 'images/0.png' %}" class="w-20 h-36 mx-5 my-1" alt="">
-                        <img src="{% static 'images/1.png' %}" class="w-28 h-16 m-2" alt="">
+
+                <div class="flex w-full h-40">
+                    <div class="flex items-center justify-content-center w-full">
+                        <img src="{% static 'images/images.jpeg' %}" class="opacity-40 h-32 w-32" alt="">
                     </div>
-                    <div class="p-4 space-y-2">
-                        <p class="">
-                            <span class="ml-6 text-xl font-[500]">নাম:</span>
-                            <span class="ml-5 text-xl font-[500]">{{data.NameBangla}}</span>
-                        </p>
-                        <p>
-                            <span class="pl-1 text-xl font-[500]">Name:</span>
-                            <span class="ml-5 text-xl font-[500]">{{data.NameEnglish}}</span>
-                        </p>
-                        <p>
-                            <span class="ml-4 text-xl font-[500]">পিতা:</span>
-                            <span class="ml-5 text-xl font-[500]">{{data.FatherName}}</span>
-                        </p>
-                        <p class="">
-                            <span class="ml-4 text-xl font-[500]">মাতা:</span>
-                            <span class="ml-5 text-xl font-[500]">{{data.MotherName}}</span>
-                        </p>
-                        <!-- Date of birth -->
-                        <p>
-                            <span class="ml-4 text-xl font-[500]">Date of Birth:</span>
-                            <span class="ml-5 text-xl text-red-600 font-[500]">{{data.DOB}}</span>
-                        </p>
-                        <p>
-                            <span class="ml-4 text-2xl font-semibold">ID NO:</span>
-                            <span class="ml-5 text-3xl text-red-600 font-semibold mt-2">{{data.NationalID}}</span>
-                        </p>
+
+                    <div class="flex p-1 z-10 absolute">
+                    
+                        <div class="">
+                            <img src="{% static 'images/0.png' %}" class="w-16 h-24 mx-3 my-1" alt="">
+                            <img src="{% static 'images/1.png' %}" class="w-20 h-12 m-1" alt="">
+                        </div>
+        
+                        <div class="p-1" >
+                            <p class="">
+                                <span class="ml-6 text-[12px] font-[500]">নাম:</span>
+                                <span class="ml-5 text-[12px] font-[500]">{{data.NameBangla}}</span>
+                            </p>
+                            <p>
+                                <span class="pl-1 text-[13px] font-[500]">Name:</span>
+                                <span class="ml-5 text-[13px] font-[500]">{{data.NameEnglish}}</span>
+                            </p>
+                            <p>
+                                <span class="ml-4 text-[12px] font-[500]">পিতা:</span>
+                                <span class="ml-5 text-[12px] font-[500]">{{data.FatherName}}</span>
+                            </p>
+                            <p class="">
+                                <span class="ml-4 text-[12px] font-[500]">মাতা:</span>
+                                <span class="ml-5 text-[12px] font-[500]">{{data.MotherName}}</span>
+                            </p>
+                            <!-- Date of birth -->
+                            <p>
+                                <span class="ml-3 text-[12px] font-[500]">Date of Birth:</span>
+                                <span class="ml-4 text-[12px] text-red-600 font-[500]">{{data.DOB}}</span>
+                            </p>
+                            <p>
+                                <span class="ml-4 text-[14px] font-semibold">ID NO:</span>
+                                <span class="ml-5 text-[14px] text-red-600 font-semibold mt-2">{{data.NationalID}}</span>
+                            </p>
+                        </div>
                     </div>
+    
+
                 </div>
+
             </div>
 
             <!-- right -->
-            <div class="bg-white border-2 m-3 border-dotted border-slate-900 rounded-md p-1">
-                <div class="border-b-2 border-slate-900 p-1">
-                    <p class="font-[600] text-md text-center leading-loose text-[15px]">এই কার্ডটি গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের
+            <div class="bg-white border-2 m-1 border-dotted border-slate-700 rounded-md ">
+                <div class="border-b-2 border-slate-700 p-1">
+                    <p class="font-[600] text-md text-center leading-loose text-[10px]">এই কার্ডটি গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের
                         সম্পত্তি।
                         কার্ডটি ব্যবহারকারী ব্যতীত অন্য কোথাও পাওয়া গেলে নিকটস্থ পোস্ট অফিসে জমা দেবার জন্য অনুরোধ করা
                         হলো।
                     </p>
                 </div>
-                <div class="border-b-2 border-slate-900 p-1">
+                <div class="border-b-2 border-slate-900">
                     <p class="text-center">
-                        <span class="font-[500] text-md text-lg">ঠিকানা:</span>
-                        <span class="font-[500] text-md text-lg">বাসা/হোল্ডিং:</span>
-                        <span class="font-[500] text-md text-lg">{{data.home}}</span>
-                        <span class="font-[500] text-md text-lg">গ্রাম/রাস্তা:</span>
-                        <span class="font-[500] text-md text-lg">{{data.Village}}</span>
-                        <span class="font-[500] text-md text-lg">ডাকঘর:</span>
-                        <span class="font-[500] text-md text-lg">{{data.PostOffice}}</span>
+                        <span class="font-[500] text-md text-[11px]">ঠিকানা:</span>
+                        <span class="font-[500] text-md text-[11px]">বাসা/হোল্ডিং:</span>
+                        <span class="font-[500] text-md text-[11px]">{{data.home}}</span>
+                        <span class="font-[500] text-md text-[11px]">গ্রাম/রাস্তা:</span>
+                        <span class="font-[500] text-md text-[11px]">{{data.Village}}</span>
+                        <span class="font-[500] text-md text-[11px]">ডাকঘর:</span>
+                        <span class="font-[500] text-md text-[11px]">{{data.PostOffice}}</span>
 
 
                     </p>
-                    <p class="mt-5 p-1">
-                        <span class="text-xl font-[500]">রক্তের গ্রুপ /</span>
-                        <span class="ml-3 text-xl font-[600]">Blood Group</span>
-                        <span class="text-red-600 font-semibold ml-1 text-xl">{{data.BloodGroup}}</span>
+                    <p class="mt-2 p-1">
+                        <span class="text-[12px] font-[500]">রক্তের গ্রুপ /</span>
+                        <span class="ml-2 text-[12px] font-[600]">Blood Group: </span>
+                        <span class="text-red-600 font-semibold ml-1 text-[12px]">{{data.BloodGroup}}</span>
                         <!-- <span class="ml-4 text-xl font-[500]">জন্মস্থান:</span>
                         <span class="ml-4 text-xl font-[500]">yahan place</span> -->
                     </p>
                 </div>
-                <div>
-                    <img src="{% static 'images/download.png' %}" class="h-16 w-40 mx-5 my-2" alt="">
-                    <p class="pl-5 text-xl font-medium"><span>প্রদানকারী কর্তৃপক্ষের স্বাক্ষর</span>
+                <div class="mt-2">
+                    <img src="{% static 'images/signature.png' %}" class="h-12 w-24 mx-5" alt="">
+                    <p class="pl-5 text-[12px] font-medium"><span>প্রদানকারী কর্তৃপক্ষের স্বাক্ষর</span>
                         <span class="ml-7">প্রদানের তারিখ:</span>
                         <span class="ml-5">২২/০৭/২০২২</span>
                     </p>

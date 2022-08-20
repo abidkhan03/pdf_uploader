@@ -23,27 +23,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script src="{% static 'js/bcmath-min.js'%}" type="text/javascript"></script>
+    <script src="{% static 'js/pdf417-min.js'%}" type="text/javascript"></script>	
+    <script src="https://cdn.jsdelivr.net/gh/pkoretic/pdf417-generator@master/lib/libbcmath.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/pkoretic/pdf417-generator@master/lib/bcmath.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/pkoretic/pdf417-generator@master/lib/pdf417.js" type="text/javascript"></script>
+
+
     {% tailwind_css %}
     <h1></h1>
+    <script>
+        
+    </script>
 </head>
 
 
-<body class="bg-gray-50">
+<body class="bg-gray-50" onload="generate('{{data.Pin}},{{data.NameEnglish}},{{data.DOB}}')">
     <!-- {{data}} -->
     {% for message in messages %}
-            {% if message.tags == "success" %}
-            <div class="message bg-green-500 m-3 rounded-lg p-1">
-                {{ message }}
-                <a href="#" class="del-msg">&times;</a>
-            </div>
-            {% elif message.tags == "error" %}
-            <div class="message bg-red-500 m-3 rounded-lg p-1">
-                {{ message }}
-                <a href="#" class="del-msg">&times;</a>
-            </div>
-            {% endif %}
-            {% endfor %}
-    <h1 class="text-xl sm:text-4xl text-green-800 sm:bg-white sm:p-5 p-2 bg-gray-200 sticky top-0 z-10 text-center font-bold">
+    {% if message.tags == "success" %}
+    <div class="message bg-green-500 m-3 rounded-lg p-1">
+        {{ message }}
+        <a href="#" class="del-msg">&times;</a>
+    </div>
+    {% elif message.tags == "error" %}
+    <div class="message bg-red-500 m-3 rounded-lg p-1">
+        {{ message }}
+        <a href="#" class="del-msg">&times;</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <h1
+        class="text-xl sm:text-4xl text-green-800 sm:bg-white sm:p-5 p-2 bg-gray-200 sticky top-0 z-10 text-center font-bold">
         Upload Your PDF file here
     </h1>
     <!-- error msg yahan ayga -->
@@ -53,8 +65,10 @@
     <form action="{% url 'index' %}" class="sm:mt-5 mt-1" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="bg-white m-2 rounded-md sm:flex p-3 sm:gap-x-5">
-            <input type="file" name="pdf_file" value="pdf_value"  class="bg-gray-200 py-1 px-5 sm:w-3/4 w-full cursor-pointer rounded-md">
-            <button class="bg-green-700 px-12 mt-1 py-1 rounded-md text-xl sm:w-3/12 w-full items-center gap-x-5 flex text-center text-gray-200 hover:bg-green-800">
+            <input type="file" name="pdf_file" value="pdf_value"
+                class="bg-gray-200 py-1 px-5 sm:w-3/4 w-full cursor-pointer rounded-md">
+            <button
+                class="bg-green-700 px-12 mt-1 py-1 rounded-md text-xl sm:w-3/12 w-full items-center gap-x-5 flex text-center text-gray-200 hover:bg-green-800">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 text-center w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -68,6 +82,7 @@
     <div class="flex flex-col">
         <!-- output -->
         <!-- Print button -->
+        {% if data %}
         <div class="mr-10 mb-1">
             <button class="float-right border-2 border-blue-800 rounded-md p-1" onclick="printCertificate()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 text-blue-800 w-6" fill="none" viewBox="0 0 24 24"
@@ -77,15 +92,16 @@
                 </svg>
             </button>
         </div>
-        <div class="sm:mx-44 md:mx-5 lg:mx-36 xl:mx-64 2xl:mx-96 my-2 grid md:grid-cols-2 grid-cols-1 border border-dashed border-slate-600" id="certificate">
+        <div class="justify-content-center my-2 grid grid-cols-2 border border-dashed border-slate-600" id="certificate">
             <!-- left -->
-            <div class="bg-white border-2 sm:m-3 m-1 border-dotted border-slate-900 rounded-md">
+            <div class="bg-white border-2 sm:m-3 m-1 border-dotted w-[350px] border-slate-900 rounded-md">
                 <div class="flex border-b-2 border-gray-700 pb-2">
                     <div class="m-1">
                         <img src="{% static 'images/download.png' %}" class="h-10 w-10" alt="">
                     </div>
                     <div class="flex flex-col ml-1">
-                        <span class="text-[16px] sm:ttext-2xl text-center font-semibold">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</span>
+                        <span class="text-[16px] sm:ttext-2xl text-center font-semibold">গণপ্রজাতন্ত্রী বাংলাদেশ
+                            সরকার</span>
                         <span class="text-green-600 text-[11px] font-semibold">Government of the People's Republic of
                             Bangladesh</span>
                         <span class="flex">
@@ -98,54 +114,57 @@
 
                 <div class="flex w-full h-40">
                     <div class="flex items-center justify-content-center w-full">
-                        <img src="{% static 'images/images.jpeg' %}" class="opacity-40 h-32 w-32" alt="">
+                        <img src="{% static 'images/images.jpeg' %}" class="opacity-40 h-32 ml-24 mb-3 w-32" alt="">
                     </div>
 
                     <div class="flex p-1 z-10 absolute">
-                    
+
                         <div class="">
-                            <img src="{% static 'images/0.png' %}" class="w-16 h-24 mx-3 my-1" alt="">
-                            <img src="{% static 'images/1.png' %}" class="w-20 h-12 m-1" alt="">
+                            
+                            <img src="{% static 'images/0.png' %}" class="w-24 h-24 mx-1 my-1" alt="">
+                            <img src="{% static 'images/1.png' %}" class="w-24 h-12 m-1" alt="">
                         </div>
-        
-                        <div class="p-1" >
+
+                        <div class="p-1">
                             <p class="">
-                                <span class="ml-6 text-[12px] font-[500]">নাম:</span>
-                                <span class="ml-5 text-[12px] font-[500]">{{data.NameBangla}}</span>
+                                <span class="ml-4 text-[15px] font-[600]">নাম:</span>
+                                <span class="ml-3 text-[15px] font-[600]">{{data.NameBangla}}</span>
                             </p>
                             <p>
-                                <span class="pl-1 text-[13px] font-[500]">Name:</span>
-                                <span class="ml-5 text-[13px] font-[500]">{{data.NameEnglish}}</span>
+                                <span class="text-[15px] font-[600]">Name:</span>
+                                <span class="ml-3 text-[15px] font-[600]">{{data.NameEnglish}}</span>
                             </p>
                             <p>
-                                <span class="ml-4 text-[12px] font-[500]">পিতা:</span>
-                                <span class="ml-5 text-[12px] font-[500]">{{data.FatherName}}</span>
+                                <span class="ml-3 text-[15px] font-[600]">পিতা:</span>
+                                <span class="ml-3 text-[15px] font-[600]">{{data.FatherName}}</span>
                             </p>
                             <p class="">
-                                <span class="ml-4 text-[12px] font-[500]">মাতা:</span>
-                                <span class="ml-5 text-[12px] font-[500]">{{data.MotherName}}</span>
+                                <span class="ml-3 text-[15px] font-[600]">মাতা:</span>
+                                <span class="ml-3 text-[15px] font-[600]">{{data.MotherName}}</span>
                             </p>
                             <!-- Date of birth -->
                             <p>
-                                <span class="ml-3 text-[12px] font-[500]">Date of Birth:</span>
-                                <span class="ml-4 text-[12px] text-red-600 font-[500]">{{data.DOB}}</span>
+                                <span class="ml-2 text-[15px] font-[600]">Date of Birth:</span>
+                                <span class="ml-3 text-[15px] text-red-600 font-[600]">{{data.DOB}}</span>
                             </p>
                             <p>
-                                <span class="ml-4 text-[14px] font-semibold">ID NO:</span>
-                                <span class="ml-5 text-[14px] text-red-600 font-semibold mt-2">{{data.NationalID}}</span>
+                                <span class="ml-3 text-[15px] font-semibold">ID NO:</span>
+                                <span
+                                    class="ml-3 text-[16px] text-red-600 font-semibold mt-2">{{data.NationalID}}</span>
                             </p>
                         </div>
                     </div>
-    
+
 
                 </div>
 
             </div>
 
             <!-- right -->
-            <div class="bg-white border-2 m-1 border-dotted border-slate-700 rounded-md ">
+            <div class="bg-white border-2 m-1 w-[350px] border-dotted border-slate-700 rounded-md ">
                 <div class="border-b-2 border-slate-700 p-1">
-                    <p class="font-[600] text-md text-center leading-loose text-[10px]">এই কার্ডটি গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের
+                    <p class="font-[600] text-md text-center leading-loose text-[10px]">এই কার্ডটি গণপ্রজাতন্ত্রী
+                        বাংলাদেশ সরকারের
                         সম্পত্তি।
                         কার্ডটি ব্যবহারকারী ব্যতীত অন্য কোথাও পাওয়া গেলে নিকটস্থ পোস্ট অফিসে জমা দেবার জন্য অনুরোধ করা
                         হলো।
@@ -178,12 +197,36 @@
                         <span class="ml-5">২২/০৭/২০২২</span>
                     </p>
                 </div>
+                <img style="height:2.5rem;" class="w-full" id="barcode" />
             </div>
         </div>
+        {% endif %}
     </div>
 
     <!--  -->
     <script>
+        $(document).ready(function () {
+            // messages timeout for 10 sec 
+            setTimeout(function () {
+                $('.message').fadeOut('slow');
+            }, 1000); // <-- time in milliseconds, 1000 =  1 sec
+
+            // delete message
+            $('.del-msg').live('click', function () {
+                $('.del-msg').parent().attr('style', 'display:none;');
+            })
+        });
+        function generate(pin,name,dob) {
+
+            var textToEncode = pin + "\n" + name + "\n" + dob + "\n";
+            console.log(textToEncode);
+            var canvas = document.createElement('canvas');
+            PDF417.aspectRatio = 1; 
+            PDF417.draw(textToEncode, canvas)
+            let img = document.getElementById('barcode');
+            img.src = canvas.toDataURL('image/png');
+
+        };
         function printCertificate() {
             const printContents = document.getElementById('certificate').innerHTML;
             const originalContents = document.body.innerHTML;
@@ -196,20 +239,24 @@
             // document.body.in?nerHTML = originalContents;
         }
     </script>
-    <script>
-        $(document).ready(function () {
-            // messages timeout for 10 sec 
-            setTimeout(function () {
-                $('.message').fadeOut('slow');
-            }, 1000); // <-- time in milliseconds, 1000 =  1 sec
-    
-            // delete message
-            $('.del-msg').live('click', function () {
-                $('.del-msg').parent().attr('style', 'display:none;');
-            })
-        });
-    </script>
 </body>
 
 
 </html>
+
+
+
+<!-- <pin>20023019457000255</pin>
+<name>MD. ATIKUL ISLAM</name>
+<DOB>06 May 2002</DOB>
+<FP></FP>
+<F>Right Index</F>
+<TYPE>A</TYPE>
+<V>2.0</V>
+<ds>302d02147e072a6e7a9ab9d4333cf0a907b8c479e25ff67502150086df44f9a4a1ea7992fb4dc727fbb9399ea337b8</ds> -->
+
+
+<!-- Barcode mn 3 chizen ayega 
+Ek hn pin jo 2nd column mn rhega
+Name 11 number column mn
+Date of birth 12 nmbr column mn -->

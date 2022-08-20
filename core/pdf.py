@@ -34,7 +34,7 @@ def JsonParser(pdf: PdfReader):
     for page in pdf.pages:
         text=page.extractText()
         for index,line in enumerate(text.split('\n')):
-            print(line)
+            # print(line)
             if "National" in line.split(' '):obj["NationalID"]=line.split(' ')[-1]
             elif "Pin" in line.split(' '):obj["Pin"]=line.split(' ')[-1]
             elif "Name(Bangla)" in line.split(' '): obj["NameBangla"]=" ".join(line.split(' ')[2:])
@@ -60,7 +60,9 @@ def JsonParser(pdf: PdfReader):
 def GetPdf(file_path:str):
     pdf = PdfReader(file_path)
     jsonobj=JsonParser(pdf)
-    # print(jsonobj)
+    
+    # jsonobj['Pin']=jsonobj['Pin'] +' \n '+ jsonobj['NameEnglish'] +' \n '+ jsonobj['DOB']
+    print(jsonobj)
     return jsonobj
 
 

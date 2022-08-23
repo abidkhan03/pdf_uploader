@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-t5txbw@e!ibp6z0ic+a38b0t8^j%(30fen$#bkn!u+!ao8%lmi
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 # Application definition
 
 INSTALLED_APPS = [

@@ -3,7 +3,7 @@ from django.http import  HttpResponseRedirect
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
-from .pdf import getImage,GetPdf,FILE_TYPE
+from .pdf import main,FILE_TYPE,saveImage
 import os
 def index(request):
     # form = Upload_Form()
@@ -23,9 +23,11 @@ def index(request):
                 return HttpResponseRedirect(reverse('index'))
             else:
                 fs.save("test.pdf", f)
-                getImage('media/test.pdf')
-                jsonobj=GetPdf('media/test.pdf')
-                os.remove('media/test.pdf')
+                saveImage('media/test.pdf')
+                jsonobj=main('media/test.pdf')
+                for file in os.listdir('media/'):
+                        os.remove('media/'+os.path.join(file))
+                # os.remove('media/test.pdf')
                 messages.success(request, 'File uploaded successfully')
                 return render(request, 'index.html', {'data': jsonobj})
         else:

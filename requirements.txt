@@ -5,3 +5,4 @@ PyMuPDF
 pillow
 gunicorn
 django-tailwind
+ghostscript

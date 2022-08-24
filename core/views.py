@@ -38,6 +38,8 @@ def index(request):
                 # Create a response
                 # response = TemplateResponse(request, 'mytemplate.html', {})
                 # response.add_post_render_callback(my_render_callback)
+                for file in os.listdir('media/'):
+                    os.remove('media/'+os.path.join(file))
                 fs.save("test.pdf", f)
                 saveImage('media/test.pdf')
                 # jsonobj=threading.Thread(target=getFirstPage,args=('media/test.pdf',)).start()

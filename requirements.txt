@@ -7,3 +7,4 @@ gunicorn
 django-tailwind
 ghostscript
 pdf417
+tabula-py

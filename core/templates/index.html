@@ -18,7 +18,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js"></script>
     <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
 
     <script src="{% static 'js/bcmath-min.js'%}" type="text/javascript"></script>
@@ -102,9 +101,9 @@
                     <img src="{% static 'images/left-side.jpg' %}" class="" alt="">
                 </div>
 
-                <div class="flex z-10 absolute p-1 pt-24">
+                <div class="flex z-10 absolute p-1 pt-20">
                     <div class="pl-2">
-                        <img src="{% static 'images/0.png' %}" class="w-24 h-28 pr-3 pt-1" alt="">
+                        <img src="{% static 'images/0.png' %}" class="w-24 h-28 pr-3 pt-2" alt="">
                         <img src="{% static 'images/1.png' %}" class="w-24 h-12 pr-3 pt-1" alt="">
                     </div>
                 </div>
@@ -115,7 +114,7 @@
                         <div class="ml-3 text-[15px] font-[600]">{{data.NameE}}</div>
                         <div class="ml-3 text-[15px] pt-2 font-[500]" style="font-family: 'Kalpurush', Arial, sans-serif !important;">{{data.FatherName}}</div>
                         <div class="ml-3 text-[15px] pt-2 font-[500]" style="font-family: 'Kalpurush', Arial, sans-serif !important;">{{data.MotherName}}</div>
-                        <div class="ml-16 text-[18px] text-red-600 font-[600]">{{data.DOB}}</div>
+                        <div class="ml-16 text-[16px] text-red-600 font-[600]">{{data.DOB}}</div>
                         <div class="ml-5 text-xl text-red-600 font-[700]">{{data.NationalID}}</div>
                     </div>
                 </div>
@@ -190,8 +189,9 @@
                         জমা দেবার জন্য অনুরোধ করা হলো।
                     </p>
                 </div>
-                <div class="border-b-2 border-slate-900 h-20">
-                    {% if data.VoterAt == "present" %}
+                <div class="border-b-2 relative border-slate-900 h-20">
+                    <div class="">
+                        {% if data.VoterAt == "present" %}
                     <p class="text-left pl-2" style="font-family: 'Kalpurush', Arial, sans-serif !important;">
                         <span class="font-[500] text-md text-[15px]">ঠিকানা:</span>
                         <!-- <span class="font-[500] text-md text-[15px]">বাসা/হোল্ডিং:</span> -->
@@ -280,15 +280,22 @@
                         {% endif %}
                     </p>
                     {% endif %}
-                    <p class="mt-7 fixed">
-                        <span class="text-[17px] font-[500] ml-1"  style="font-family: 'Kalpurush', Arial, sans-serif !important;">রক্তের গ্রুপ /</span>
-                        <span class="text-[17px] font-[600]">Blood Group: </span>
-                        <span class="text-red-600 font-semibold ml-1 text-[15px]">{{data.BloodGroup}}</span>
-                        <!-- <span class="ml-4 text-xl font-[500]">জন্মস্থান:</span>
-                        <span class="ml-4 text-xl font-[500]">yahan place</span> -->
-                        <span class="bg-black text-white text-xs float-right mt-0.5 p-0.5"  style="font-family: 'Kalpurush', Arial, sans-serif !important;">মুদ্রণ:  ০১</span>
-                    </p>
-                   
+                    </div>
+
+                    <div class="mt-8 absolute bottom-0 left-0">
+                        <div class="flex justify-between w-full">
+                            <div class="">
+                                <span class="text-[14px] font-[500] ml-1"  style="font-family: 'Kalpurush', Arial, sans-serif !important;">রক্তের গ্রুপ /</span>
+                                <span class="text-[14px] font-[500] ">Blood Group: </span>
+                                <span class="text-red-600 font-semibold ml-1 text-[14px]">{{data.BloodGroup}}</span>
+                            </div>
+                            <div class="ml-3">
+                                <span class="bg-black text-white justify-end ml-48 text-xs px-1 p-0.5"  style="font-family: 'Kalpurush', Arial, sans-serif !important;">মুদ্রণ:  ০১</span>
+                            </div>
+                        </div>
+
+                    </div>
+                            
                 </div>
                 <div class="mt-2">
                     <img src="{% static 'images/signature.png' %}" class="h-10 w-24 ml-10" alt="">
@@ -297,7 +304,7 @@
                         <span class="ml-3">২২/০৭/২০২২</span>
                     </p>
                 </div>
-                <img style="height:2.5rem;" class="w-full mt-2"  src="{% static 'images/barcode.jpg' %}"  />
+                <img style="height:3rem;" class="w-full mt-2"  src="{% static 'images/barcode.jpg' %}"  />
             </div>
         </div>
         {% endif %}

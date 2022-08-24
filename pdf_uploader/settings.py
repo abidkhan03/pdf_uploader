@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # for linux and mac Users
 NPM_BIN_PATH = 'npm'
 
-
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 # Application definition
 
 INSTALLED_APPS = [

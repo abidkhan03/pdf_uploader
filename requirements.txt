@@ -6,3 +6,4 @@ pillow
 gunicorn
 django-tailwind
 ghostscript
+pdf417

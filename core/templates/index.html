@@ -39,7 +39,7 @@
 </head>
 
 
-<body class="bg-gray-50" onload="generate('{{data.Pin}},{{data.NameEnglish}},{{data.DOB}}')">
+<body class="bg-gray-50" onload="generate('{{data.barcode}}')">
     <!-- {{data}} -->
     {% for message in messages %}
     {% if message.tags == "success" %}
@@ -110,10 +110,10 @@
                 </div>
 
                 <div class="flex z-10 absolute pl-36 pt-20">
-                    <div class="pt-2">
-                        <div class="ml-3 pt-0.5 font-[600] text-[16px]" style="font-family: 'Kalpurush', Arial, sans-serif !important;">{{data.NameBangla}}</div>
-                        <div class="ml-3 text-[15px] pt-1 font-[600]">{{data.NameEnglish}}</div>
-                        <div class="ml-3 text-[15px] pt-1 font-[500]" style="font-family: 'Kalpurush', Arial, sans-serif !important;">{{data.FatherName}}</div>
+                    <div class="pt-1">
+                        <div class="ml-3 pt-0.5 font-[700] text-[17px]" style="font-family: 'Kalpurush', Arial, sans-serif !important;">{{data.NameB}}</div>
+                        <div class="ml-3 text-[15px] font-[600]">{{data.NameE}}</div>
+                        <div class="ml-3 text-[15px] pt-2 font-[500]" style="font-family: 'Kalpurush', Arial, sans-serif !important;">{{data.FatherName}}</div>
                         <div class="ml-3 text-[15px] pt-2 font-[500]" style="font-family: 'Kalpurush', Arial, sans-serif !important;">{{data.MotherName}}</div>
                         <div class="ml-16 text-[18px] text-red-600 font-[600]">{{data.DOB}}</div>
                         <div class="ml-5 text-xl text-red-600 font-[700]">{{data.NationalID}}</div>
@@ -191,18 +191,98 @@
                     </p>
                 </div>
                 <div class="border-b-2 border-slate-900 h-20">
+                    {% if data.VoterAt == "present" %}
                     <p class="text-left pl-2" style="font-family: 'Kalpurush', Arial, sans-serif !important;">
                         <span class="font-[500] text-md text-[15px]">ঠিকানা:</span>
-                        <span class="font-[500] text-md text-[15px]">বাসা/হোল্ডিং:</span>
-                        <span class="font-[500] text-md text-[15px]">{{data.home}}</span>
-                        <span class="font-[500] text-md text-[15px]">গ্রাম/রাস্তা:</span>
-                        <span class="font-[500] text-md text-[15px]">{{data.Village}}</span>
-                        <span class="font-[500] text-md text-[15px]">ডাকঘর:</span>
-                        <span class="font-[500] text-md text-[15px]">{{data.PostOffice}}</span>
+                        <!-- <span class="font-[500] text-md text-[15px]">বাসা/হোল্ডিং:</span> -->
+                        {% if data.Present.HH != "" %}
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.HH }},</span>
+                        {% endif %}
+                        {% if data.Present.AVR != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">অতিরিক্ত গ্রাম/রাস্তা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.AVR}},</span>
+                        {% endif %}
+                        {% if data.Present.VR != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">গ্রাম/রাস্তা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.VR}},</span>
+                        {% endif %}
+                        {% if data.Present.MM != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">মৌজা/মহোল্লা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.MM}},</span>
+                        {% endif %}
+                        {% if data.Present.AMM != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">অতিরিক্ত মৌজা/মহোল্লা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.AMM}},</span>
+                        {% endif %}
+                        {% if data.Present.PostOffice != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">ডাকঘর:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.PostOffice}},</span>
+                        {% endif %}
+                        {% if data.Present.PostCode != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">পোস্ট অফিসের নাম্বার:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.PostCode}},</span>
+                        {% endif %}
+                        {% if data.Present.CCOM != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">সিটি কর্পোরেশন:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.CCOM}},</span>
+                        {% endif %}
+                        {% if data.Present.district != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">জেলা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.district}},</span>
+                        {% endif %}
+                        {% if data.Present.division != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">বিভাগ:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Present.division}},</span>
+                        {% endif %}
                     </p>
-                    <p class="mt-8">
-                        <span class="text-[15px] font-[500] ml-1"  style="font-family: 'Kalpurush', Arial, sans-serif !important;">রক্তের গ্রুপ /</span>
-                        <span class="text-[15px] font-[600]">Blood Group: </span>
+                    {% else %}
+                    <p class="text-left pl-2" style="font-family: 'Kalpurush', Arial, sans-serif !important;">
+                        <span class="font-[500] text-md text-[15px]">ঠিকানা:</span>
+                        <!-- <span class="font-[500] text-md text-[15px]">বাসা/হোল্ডিং:</span> -->
+                        {% if data.Permanent.HH != "" %}
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.HH }},</span>
+                        {% endif %}
+                        {% if data.Permanent.AVR != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">অতিরিক্ত গ্রাম/রাস্তা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.AVR}},</span>
+                        {% endif %}
+                        {% if data.Permanent.VR != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">গ্রাম/রাস্তা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.VR}},</span>
+                        {% endif %}
+                        {% if data.Permanent.MM != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">মৌজা/মহোল্লা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.MM}},</span>
+                        {% endif %}
+                        {% if data.Permanent.AMM != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">অতিরিক্ত মৌজা/মহোল্লা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.AMM}},</span>
+                        {% endif %}
+                        {% if data.Permanent.PostOffice != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">ডাকঘর:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.PostOffice}},</span>
+                        {% endif %}
+                        {% if data.Permanent.PostCode != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">পোস্ট অফিসের নাম্বার:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.PostCode}},</span>
+                        {% endif %}
+                        {% if data.Permanent.CCOM != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">সিটি কর্পোরেশন:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.CCOM}},</span>
+                        {% endif %}
+                        {% if data.Permanent.district != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">জেলা:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.district}},</span>
+                        {% endif %}
+                        {% if data.Permanent.division != "" %}
+                        <!-- <span class="font-[500] text-md text-[15px]">বিভাগ:</span> -->
+                        <span class="font-[500] text-md text-[15px]">{{data.Permanent.division}},</span>
+                        {% endif %}
+                    </p>
+                    {% endif %}
+                    <p class="mt-7 fixed">
+                        <span class="text-[17px] font-[500] ml-1"  style="font-family: 'Kalpurush', Arial, sans-serif !important;">রক্তের গ্রুপ /</span>
+                        <span class="text-[17px] font-[600]">Blood Group: </span>
                         <span class="text-red-600 font-semibold ml-1 text-[15px]">{{data.BloodGroup}}</span>
                         <!-- <span class="ml-4 text-xl font-[500]">জন্মস্থান:</span>
                         <span class="ml-4 text-xl font-[500]">yahan place</span> -->
@@ -217,7 +297,7 @@
                         <span class="ml-3">২২/০৭/২০২২</span>
                     </p>
                 </div>
-                <img style="height:2.5rem;" class="w-full mt-2" id="barcode" />
+                <img style="height:2.5rem;" class="w-full mt-2"  src="{% static 'images/barcode.jpg' %}"  />
             </div>
         </div>
         {% endif %}
@@ -236,15 +316,16 @@
                 $('.del-msg').parent().attr('style', 'display:none;');
             })
         });
-        function generate(pin, name, dob) {
+        function generate(barcode) {
 
-            var textToEncode = pin + "\n" + name + "\n" + dob + "\n";
-            console.log(textToEncode);
-            var canvas = document.createElement('canvas');
-            PDF417.aspectRatio = 1;
-            PDF417.draw(textToEncode, canvas)
-            let img = document.getElementById('barcode');
-            img.src = canvas.toDataURL('image/png');
+            // var textToEncode = barcode;
+            // console.log(textToEncode);
+            // var canvas = document.createElement('canvas');
+            // PDF417.aspectRatio = 1;
+            // PDF417.draw(textToEncode, canvas)
+            // let img = document.getElementById('barcode');
+            // // img.src = canvas.toDataURL('image/png');
+            // img.src = 'data:image/png;base64,' + barcode;
 
         };
         function printCertificate() {
